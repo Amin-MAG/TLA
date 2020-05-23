@@ -1,7 +1,8 @@
 from PythonCodes.model.automatons.pda import PDA
+from PythonCodes.model.automatons.turing import Turing
 from PythonCodes.model.components.state import BaseState
 
-from PythonCodes.model.components.state_transitions import BaseTransition, PushDownTransition
+from PythonCodes.model.components.state_transitions import BaseTransition, PushDownTransition, TuringTransition
 
 from PythonCodes.model.automatons.fa import FA
 
@@ -114,14 +115,14 @@ class Languages:
                                                 PushDownTransition.DOLLAR_SIGN))
 
         # create and run
-        fa = PDA({
+        pda = PDA({
             q0.name: q0,
             q1.name: q1,
             qf.name: qf
         },
             q0)
 
-        if fa.start_checking(word):
+        if pda.start_checking(word):
             print(True)
         else:
             print(False)
@@ -154,7 +155,7 @@ class Languages:
                                                 PushDownTransition.DOLLAR_SIGN))
 
         # create and run
-        fa = PDA({
+        pda = PDA({
             q0.name: q0,
             q1.name: q1,
             q2.name: q2,
@@ -164,7 +165,118 @@ class Languages:
         },
             q0)
 
-        if fa.start_checking(word):
+        if pda.start_checking(word):
+            print(True)
+        else:
+            print(False)
+
+    @staticmethod
+    def check_word_for_language_number_5(word):
+
+        # states
+        q0 = BaseState("Q0")
+        q1 = BaseState("Q1")
+        q2 = BaseState("Q2")
+        q3 = BaseState("Q3")
+        q4 = BaseState("Q4")
+        q5 = BaseState("Q5")
+        q6 = BaseState("Q6")
+        q7 = BaseState("Q7")
+        q8 = BaseState("Q8")
+        q9 = BaseState("Q9")
+        qf = BaseState("Qf", True)
+
+        # set transitions
+        q0.add_to_transition(TuringTransition(["a"], q1.name, "1", TuringTransition.R))
+        q0.add_to_transition(TuringTransition(["b"], q1.name, "2", TuringTransition.R))
+        q0.add_to_transition(TuringTransition(["c"], q1.name, "3", TuringTransition.R))
+
+        q1.add_to_transition(TuringTransition(["a"], q1.name, "a", TuringTransition.R))
+        q1.add_to_transition(TuringTransition(["b"], q1.name, "b", TuringTransition.R))
+        q1.add_to_transition(TuringTransition(["c"], q1.name, "c", TuringTransition.R))
+
+        q1.add_to_transition(TuringTransition(["1"], q2.name, "1", TuringTransition.L))
+        q1.add_to_transition(TuringTransition(["2"], q2.name, "2", TuringTransition.L))
+        q1.add_to_transition(TuringTransition(["3"], q2.name, "3", TuringTransition.L))
+        q1.add_to_transition(TuringTransition([TuringTransition.DOLLAR_SIGN], q2.name, TuringTransition.DOLLAR_SIGN,
+                                              TuringTransition.L))
+
+        q2.add_to_transition(TuringTransition(["a"], q3.name, "1", TuringTransition.L))
+        q2.add_to_transition(TuringTransition(["b"], q3.name, "2", TuringTransition.L))
+        q2.add_to_transition(TuringTransition(["c"], q3.name, "3", TuringTransition.L))
+
+        q3.add_to_transition(TuringTransition(["a"], q3.name, "a", TuringTransition.L))
+        q3.add_to_transition(TuringTransition(["b"], q3.name, "b", TuringTransition.L))
+        q3.add_to_transition(TuringTransition(["c"], q3.name, "c", TuringTransition.L))
+
+        q3.add_to_transition(TuringTransition(["1"], q0.name, "1", TuringTransition.R))
+        q3.add_to_transition(TuringTransition(["2"], q0.name, "2", TuringTransition.R))
+        q3.add_to_transition(TuringTransition(["3"], q0.name, "3", TuringTransition.R))
+
+        q0.add_to_transition(TuringTransition(["1"], q4.name, "1", TuringTransition.L))
+        q0.add_to_transition(TuringTransition(["2"], q4.name, "2", TuringTransition.L))
+        q0.add_to_transition(TuringTransition(["3"], q4.name, "3", TuringTransition.L))
+
+        q4.add_to_transition(TuringTransition(["1"], q4.name, "a", TuringTransition.L))
+        q4.add_to_transition(TuringTransition(["2"], q4.name, "b", TuringTransition.L))
+        q4.add_to_transition(TuringTransition(["3"], q4.name, "c", TuringTransition.L))
+
+        q4.add_to_transition(TuringTransition([TuringTransition.DOLLAR_SIGN], q5.name, TuringTransition.DOLLAR_SIGN,
+                                              TuringTransition.R))
+
+        q5.add_to_transition(TuringTransition(["a"], q6.name, "1", TuringTransition.R))
+        q5.add_to_transition(TuringTransition(["b"], q7.name, "2", TuringTransition.R))
+        q5.add_to_transition(TuringTransition(["c"], q8.name, "3", TuringTransition.R))
+
+        q6.add_to_transition(TuringTransition(["a"], q6.name, "a", TuringTransition.R))
+        q6.add_to_transition(TuringTransition(["b"], q6.name, "b", TuringTransition.R))
+        q6.add_to_transition(TuringTransition(["c"], q6.name, "c", TuringTransition.R))
+        q6.add_to_transition(TuringTransition(["0"], q6.name, "0", TuringTransition.R))
+
+        q7.add_to_transition(TuringTransition(["a"], q7.name, "a", TuringTransition.R))
+        q7.add_to_transition(TuringTransition(["b"], q7.name, "b", TuringTransition.R))
+        q7.add_to_transition(TuringTransition(["c"], q7.name, "c", TuringTransition.R))
+        q7.add_to_transition(TuringTransition(["0"], q7.name, "0", TuringTransition.R))
+
+        q8.add_to_transition(TuringTransition(["a"], q8.name, "a", TuringTransition.R))
+        q8.add_to_transition(TuringTransition(["b"], q8.name, "b", TuringTransition.R))
+        q8.add_to_transition(TuringTransition(["c"], q8.name, "c", TuringTransition.R))
+        q8.add_to_transition(TuringTransition(["0"], q8.name, "0", TuringTransition.R))
+
+        q6.add_to_transition(TuringTransition(["1"], q9.name, "0", TuringTransition.L))
+        q7.add_to_transition(TuringTransition(["2"], q9.name, "0", TuringTransition.L))
+        q8.add_to_transition(TuringTransition(["3"], q9.name, "0", TuringTransition.L))
+
+        q9.add_to_transition(TuringTransition(["a"], q9.name, "a", TuringTransition.L))
+        q9.add_to_transition(TuringTransition(["b"], q9.name, "b", TuringTransition.L))
+        q9.add_to_transition(TuringTransition(["c"], q9.name, "c", TuringTransition.L))
+        q9.add_to_transition(TuringTransition(["0"], q9.name, "0", TuringTransition.L))
+
+        q9.add_to_transition(TuringTransition(["1"], q5.name, "1", TuringTransition.R))
+        q9.add_to_transition(TuringTransition(["2"], q5.name, "2", TuringTransition.R))
+        q9.add_to_transition(TuringTransition(["3"], q5.name, "3", TuringTransition.R))
+
+        q5.add_to_transition(TuringTransition(["0"], qf.name, "0", TuringTransition.L))
+
+        # create and run
+        turing = Turing({
+            q0.name: q0,
+            q1.name: q1,
+            q2.name: q2,
+            q3.name: q3,
+            q4.name: q4,
+            q5.name: q5,
+            q6.name: q6,
+            q7.name: q7,
+            q8.name: q8,
+            q9.name: q9,
+            qf.name: qf
+        },
+            q0)
+
+        turing.tape = Turing.get_tape_from_word(word)
+
+        if turing.start_checking(word):
             print(True)
         else:
             print(False)

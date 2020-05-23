@@ -14,3 +14,15 @@ class PushDownTransition(BaseTransition):
         super().__init__(conditions, state)
         self.pop_data = pop_data
         self.push_data = push_data
+
+
+class TuringTransition(BaseTransition):
+
+    R = "RIGHT"
+    L = "LEFT"
+    DOLLAR_SIGN = "$"
+
+    def __init__(self, conditions, state, writing_data, direction):
+        super().__init__(conditions, state)
+        self.writing_data = writing_data
+        self.direction = direction
