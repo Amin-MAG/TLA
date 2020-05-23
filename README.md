@@ -12,7 +12,7 @@ Usage:
         input_string\tThe string you want to check.
         Language_CODE\tYou can see Language_CODE in doc (number from 1 to 5)
     exit
-        Exit python app"""
+        Exit python app
 ```
 
 

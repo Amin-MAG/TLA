@@ -55,6 +55,9 @@ class PDA(FA):
                 return False
         # still have to read next letter
         elif len(accepted_for_next_step) != 0:
+            accepted_for_next_step = list(filter(
+                lambda trans:
+                self.pop_push_stack(list(stack), trans.pop_data, trans.push_data), accepted_for_next_step))
             for index, accepted_transition in enumerate(accepted_for_next_step):
                 new_stack = list(stack)
                 if self.pop_push_stack(new_stack, accepted_transition.pop_data, accepted_transition.push_data):
