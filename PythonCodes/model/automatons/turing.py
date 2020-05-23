@@ -16,6 +16,8 @@ class Turing(FA):
 
         # halts
         if len(accepted_for_next_step) == 0:
+            print("In State {} Pointer Index is {} Reading '{}'\nTape = {}\n"
+                  .format(self.current.name, self.pointer_index, self.tape[self.pointer_index], self.tape))
             # check if we are in final state
             if self.current.is_final_state:
                 return True
@@ -23,6 +25,9 @@ class Turing(FA):
         # still can go
         else:
             transition = accepted_for_next_step[0]
+            print("In State {} Pointer Index is {} Reading '{}'\nTape = {}\nPut '{}' Instead Of {} And Go to {}\n"
+                  .format(self.current.name, self.pointer_index, self.tape[self.pointer_index], self.tape,
+                          transition.writing_data, self.tape[self.pointer_index], transition.direction))
             self.tape[self.pointer_index] = transition.writing_data
             if transition.direction == TuringTransition.R:
                 self.pointer_index += 1

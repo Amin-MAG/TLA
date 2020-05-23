@@ -24,9 +24,11 @@ class Languages:
         fa = FA({q1.name: q1, q2.name: q2}, q1)
 
         if fa.start_checking(word):
-            print(True)
+            print("[*] It is Accepted")
         else:
-            print(False)
+            print("[!] It is Failed")
+
+        print("---------------------------------------------------------------------")
 
     @staticmethod
     def check_word_for_language_number_2(word):
@@ -88,9 +90,11 @@ class Languages:
             q00)
 
         if fa.start_checking(word):
-            print(True)
+            print("[*] It is Accepted")
         else:
-            print(False)
+            print("[!] It is Failed")
+
+        print("---------------------------------------------------------------------")
 
     @staticmethod
     def check_word_for_language_number_3(word):
@@ -123,9 +127,11 @@ class Languages:
             q0)
 
         if pda.start_checking(word):
-            print(True)
+            print("[*] It is Accepted")
         else:
-            print(False)
+            print("[!] It is Failed")
+
+        print("---------------------------------------------------------------------")
 
     @staticmethod
     def check_word_for_language_number_4(word):
@@ -166,9 +172,11 @@ class Languages:
             q0)
 
         if pda.start_checking(word):
-            print(True)
+            print("[*] It is Accepted")
         else:
-            print(False)
+            print("[!] It is Failed")
+
+        print("---------------------------------------------------------------------")
 
     @staticmethod
     def check_word_for_language_number_5(word):
@@ -277,6 +285,8 @@ class Languages:
         turing.tape = Turing.get_tape_from_word(word)
 
         if turing.start_checking(word):
-            print(True)
+            print("[*] It is Accepted")
         else:
-            print(False)
+            print("[!] It is Failed")
+
+        print("---------------------------------------------------------------------")
